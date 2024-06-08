@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  app:
+    image: mysql
+    build:
+      context: .
+    container_name: app
+    environment:
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+      - MYSQL_DATABASE=com.mysql.cj.jdbc.Driver://localhost:3306/upc
+
+  db:
+    image: mysql
+    container_name: db
+    environment:
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+      - MYSQL_DATABASE=petcare
+    ports:
+      - "3306:3306"
