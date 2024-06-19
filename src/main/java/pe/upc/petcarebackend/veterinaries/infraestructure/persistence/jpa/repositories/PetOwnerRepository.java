@@ -11,8 +11,5 @@ import java.util.List;
 import java.util.Optional;
 
 public interface PetOwnerRepository extends JpaRepository<PetOwner, Long> {
-    List<PetOwner> findByAllByVeterinaryRecordId(VeterinaryRecordId veterinaryRecordId);
-    Optional<PetOwner> findAllByPetId(AppoinmentStatus status);
-
-
+    Optional<PetOwner> findByPetId(Long petId);
 }

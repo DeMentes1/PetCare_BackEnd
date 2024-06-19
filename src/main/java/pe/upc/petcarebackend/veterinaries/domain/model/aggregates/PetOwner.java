@@ -1,9 +1,6 @@
 package pe.upc.petcarebackend.veterinaries.domain.model.aggregates;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Embedded;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.Getter;
 import org.springframework.context.annotation.Profile;
 import pe.upc.petcarebackend.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
@@ -28,7 +25,7 @@ public class PetOwner extends AuditableAbstractAggregateRoot<PetOwner> {
 
     @Getter
     @ManyToOne
-    @Column(name="pet_id")
+    @JoinColumn(name="pet_id")
     private Pet pet;
 
     @Embedded
@@ -38,8 +35,8 @@ public class PetOwner extends AuditableAbstractAggregateRoot<PetOwner> {
 
     public PetOwner() {}
 
-    public PetOwner(PetOwnerRecordId petOwnerRecordId, Pet pet){
-        this.petOwnerRecordId = petOwnerRecordId;
+    public PetOwner(Pet pet){
+        //this.petOwnerRecordId = petOwnerRecordId;
         this.pet = pet;
         this.status=AppoinmentStatus.NOT_STARTED;
     }

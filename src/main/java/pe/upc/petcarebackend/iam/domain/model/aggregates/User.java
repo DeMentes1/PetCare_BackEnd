@@ -1,4 +1,4 @@
-package pe.upc.petcarebackend.iam.domain.model.aggregates;
+/*package pe.upc.petcarebackend.iam.domain.model.aggregates;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -41,3 +41,4 @@ public class User extends AuditableAbstractAggregateRoot<User> {
 
 
 }
+*/

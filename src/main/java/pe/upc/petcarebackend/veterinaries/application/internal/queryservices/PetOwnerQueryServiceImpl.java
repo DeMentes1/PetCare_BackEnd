@@ -2,7 +2,8 @@ package pe.upc.petcarebackend.veterinaries.application.internal.queryservices;
 
 import org.springframework.stereotype.Service;
 import pe.upc.petcarebackend.veterinaries.domain.model.aggregates.PetOwner;
-import pe.upc.petcarebackend.veterinaries.domain.model.queries.GetPetOwnerByIdQuery;
+import pe.upc.petcarebackend.veterinaries.domain.model.queries.GetAllPetOwnersQuery;
+import pe.upc.petcarebackend.veterinaries.domain.model.queries.GetPetOwnerByPetIdQuery;
 import pe.upc.petcarebackend.veterinaries.domain.services.PetOwnerQueryService;
 import pe.upc.petcarebackend.veterinaries.infraestructure.persistence.jpa.repositories.PetOwnerRepository;
 
@@ -17,6 +18,9 @@ public class PetOwnerQueryServiceImpl implements PetOwnerQueryService {
     public PetOwnerQueryServiceImpl(PetOwnerRepository petOwnerRepository) {this.petOwnerRepository = petOwnerRepository;}
 
     @Override
-    public Optional<PetOwner> handle(GetPetOwnerByIdQuery query){return petOwnerRepository.findById(query.petOwnerId());}
+    public Optional<PetOwner> handle(GetPetOwnerByPetIdQuery query){return petOwnerRepository.findByPetId(query.petId());}
+
+    @Override
+    public List<PetOwner> handle(GetAllPetOwnersQuery query) { return petOwnerRepository.findAll();}
 
 }

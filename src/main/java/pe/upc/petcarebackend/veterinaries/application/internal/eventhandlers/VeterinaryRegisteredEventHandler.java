@@ -1,4 +1,4 @@
-package pe.upc.petcarebackend.veterinaries.application.internal.eventhandlers;
+/*package pe.upc.petcarebackend.veterinaries.application.internal.eventhandlers;
 
 import org.springframework.stereotype.Service;
 import pe.upc.petcarebackend.veterinaries.domain.services.VeterinaryCommandService;
@@ -12,3 +12,4 @@ public class VeterinaryRegisteredEventHandler {
     }
 
 }
+*/
