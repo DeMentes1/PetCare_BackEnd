@@ -1,4 +1,8 @@
 package pe.upc.petcarebackend.veterinaries.domain.model.valueobjects;
 
-public class VeterinaryStatus {
+public enum VeterinaryStatus {
+    CLOSED,
+    OPENED,
+    ALL_DAY,
 }
+

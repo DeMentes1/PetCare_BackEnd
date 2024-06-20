@@ -1,4 +1,4 @@
 package pe.upc.petcarebackend.veterinaries.interfaces.rest.resources;
 
-public record PetOwnerResource(Long petOwnerId, Long petId, String status) {
+public record PetOwnerResource(String petOwnerRecordId, Long profileId, Long petId, String status) {
 }

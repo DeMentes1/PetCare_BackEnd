@@ -21,7 +21,7 @@ public class PetOwner extends AuditableAbstractAggregateRoot<PetOwner> {
     @Getter
     @Embedded
     @Column(name="petowner_id")
-    private PetOwnerRecordId petOwnerRecordId;
+    private final PetOwnerRecordId petOwnerRecordId;
 
     @Getter
     @ManyToOne
@@ -33,22 +33,26 @@ public class PetOwner extends AuditableAbstractAggregateRoot<PetOwner> {
 
     private AppoinmentStatus status;
 
-    public PetOwner() {}
-
-    public PetOwner(Pet pet){
-        //this.petOwnerRecordId = petOwnerRecordId;
-        this.pet = pet;
-        this.status=AppoinmentStatus.NOT_STARTED;
+    public PetOwner() {
+        this.petOwnerRecordId = new PetOwnerRecordId();
     }
 
-    public PetOwner(Long profileId){
+    public PetOwner(Long profileId, Pet pet){
         this();
         this.profileId = new ProfileId(profileId);
+        this.pet = pet;
+        this.status=AppoinmentStatus.NOT_STARTED;
     }
 
     public PetOwner(ProfileId profileId){
         this();
         this.profileId = profileId;
+    }
+
+
+
+    public String getOwnerRecordId() {
+        return this.petOwnerRecordId.petOwnerId();
     }
 
     public Long getProfileId() {

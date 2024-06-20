@@ -6,7 +6,8 @@ import pe.upc.petcarebackend.veterinaries.interfaces.rest.resources.PetOwnerReso
 public class PetOwnerResourceFromEntityAssembler {
     public static PetOwnerResource toResourceFromEntity(PetOwner petOwner) {
         return new PetOwnerResource(
-                petOwner.getId(),
+                petOwner.getOwnerRecordId(),
+                petOwner.getProfileId(),
                 petOwner.getPet().getId(),
                 petOwner.getStatus());
     }
