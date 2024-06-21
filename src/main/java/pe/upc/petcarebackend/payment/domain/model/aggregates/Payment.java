@@ -8,6 +8,7 @@ import pe.upc.petcarebackend.payment.domain.model.entities.Transaction;
 import pe.upc.petcarebackend.payment.domain.model.valueObjects.Amount;
 import pe.upc.petcarebackend.payment.domain.model.valueObjects.PaymentMethod;
 import pe.upc.petcarebackend.payment.domain.model.valueObjects.PaymentStatus;
+import pe.upc.petcarebackend.payment.domain.model.valueObjects.TransactionID;
 import pe.upc.petcarebackend.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
 
 import java.util.ArrayList;
@@ -23,8 +24,12 @@ public class Payment extends AuditableAbstractAggregateRoot<Payment> {
 
     @Embedded
     @NotNull
-    private PaymentMethod paymentMethod;
+    private TransactionID transactionId;
 
+    @Embedded
+    @NotNull
+    private PaymentMethod paymentMethod;
+    
     @Embedded
     @NotNull
     private Amount amount;
@@ -37,6 +42,7 @@ public class Payment extends AuditableAbstractAggregateRoot<Payment> {
     private final List<Transaction> transactions = new ArrayList<>();
 
     public Payment(PaymentMethod paymentMethod, Amount amount) {
+        this.transactionId = new TransactionID();
         this.paymentMethod = paymentMethod;
         this.amount = amount;
         this.status = PaymentStatus.PENDING;
