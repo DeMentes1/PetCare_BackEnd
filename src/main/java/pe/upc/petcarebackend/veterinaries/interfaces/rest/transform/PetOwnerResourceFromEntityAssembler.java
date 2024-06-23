@@ -8,7 +8,7 @@ public class PetOwnerResourceFromEntityAssembler {
         return new PetOwnerResource(
                 petOwner.getOwnerRecordId(),
                 petOwner.getProfileId(),
-                petOwner.getPet().getId(),
+                petOwner.getPet() != null ? petOwner.getPet().getId() : 0L,
                 petOwner.getStatus());
     }
 }

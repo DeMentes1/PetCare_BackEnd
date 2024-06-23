@@ -10,8 +10,7 @@ public class VeterinaryResourceFromEntityAssembler {
         return new VeterinaryResource(
                 veterinary.getVeterinaryId(),
                 veterinary.getProfileId(),
-                veterinary.getDescription(),
-                veterinary.getStatus()
-                );
+                veterinary.getStatus(),
+                veterinary.getDescription());
     }
 }

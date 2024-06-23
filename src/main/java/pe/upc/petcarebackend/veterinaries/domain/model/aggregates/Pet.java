@@ -1,6 +1,5 @@
 package pe.upc.petcarebackend.veterinaries.domain.model.aggregates;
 
-import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import lombok.Getter;
 import org.apache.logging.log4j.util.Strings;

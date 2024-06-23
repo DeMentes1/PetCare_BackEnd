@@ -1,7 +1,6 @@
 package pe.upc.petcarebackend.veterinaries.application.internal.queryservices;
 
 import org.springframework.stereotype.Service;
-import pe.upc.petcarebackend.veterinaries.domain.model.aggregates.Pet;
 import pe.upc.petcarebackend.veterinaries.domain.model.aggregates.PetOwner;
 import pe.upc.petcarebackend.veterinaries.domain.model.queries.GetAllPetOwnersQuery;
 import pe.upc.petcarebackend.veterinaries.domain.model.queries.GetPetOwnerByPetIdQuery;

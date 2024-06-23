@@ -22,35 +22,36 @@ public class Veterinary extends AuditableAbstractAggregateRoot<Veterinary> {
     private String description;
     private VeterinaryStatus status;
 
-    /*
-    private String name;
-    private String description;
-    private String phone;
-     */
-
     public Veterinary() {
         this.veterinaryRecordId = new VeterinaryRecordId();
         this.description= Strings.EMPTY;
+        this.status= VeterinaryStatus.OPENED;
     }
 
     public Veterinary(Long profileId, String description){
         this();
         this.profileId = new ProfileId(profileId);
         this.description=description;
-        this.status= VeterinaryStatus.CLOSED;
-
+        this.status= VeterinaryStatus.OPENED;
     }
 
     public Veterinary(ProfileId profileId){
         this();
         this.profileId = profileId;
+        this.status= VeterinaryStatus.OPENED;
     }
 
-    public String getVeterinaryId(){return this.veterinaryRecordId.veterinaryId(); }
+    public String getVeterinaryId() {
+        return this.veterinaryRecordId != null ? this.veterinaryRecordId.veterinaryId() : "unknown";
+    }
 
-    public Long getProfileId(){return this.profileId.profileId(); }
+    public Long getProfileId() {
+        return this.profileId != null ? this.profileId.profileId() : null;
+    }
 
-    public String getStatus(){return this.status.name().toLowerCase();}
+    public String getStatus() {
+        return this.status != null ? this.status.name().toLowerCase() : "OPENED";
+    }
 
     public void open(){
         this.status=VeterinaryStatus.OPENED;

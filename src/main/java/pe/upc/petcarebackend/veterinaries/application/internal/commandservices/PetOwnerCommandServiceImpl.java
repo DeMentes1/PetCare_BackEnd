@@ -3,8 +3,6 @@ package pe.upc.petcarebackend.veterinaries.application.internal.commandservices;
 import org.springframework.stereotype.Service;
 import pe.upc.petcarebackend.veterinaries.application.internal.outboundservices.acl.ExternalProfileService;
 import pe.upc.petcarebackend.veterinaries.domain.model.aggregates.PetOwner;
-import pe.upc.petcarebackend.veterinaries.domain.model.commands.CancelAppoinmentCommand;
-import pe.upc.petcarebackend.veterinaries.domain.model.commands.ConfirmAppoinmentCommand;
 import pe.upc.petcarebackend.veterinaries.domain.model.commands.CreatePetOwnerCommand;
 import pe.upc.petcarebackend.veterinaries.domain.model.valueobjects.PetOwnerRecordId;
 import pe.upc.petcarebackend.veterinaries.domain.services.PetOwnerCommandService;
@@ -19,18 +17,6 @@ public class PetOwnerCommandServiceImpl implements PetOwnerCommandService {
         this.petOwnerRepository = petOwnerRepository;
         this.externalProfileService = externalProfileService;
     }
-
-    /*
-        @Override
-        public Long handle(ConfirmAppoinmentCommand command) {
-            return 0;
-        }
-
-        @Override
-        public Long handle(CancelAppoinmentCommand command) {
-            return 0;
-        }
-    */
 
     @Override
     public PetOwnerRecordId handle(CreatePetOwnerCommand command) {

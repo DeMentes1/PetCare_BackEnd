@@ -12,12 +12,6 @@ import pe.upc.petcarebackend.veterinaries.domain.model.valueobjects.ProfileId;
 @Entity
 public class PetOwner extends AuditableAbstractAggregateRoot<PetOwner> {
 
-   /*private String name;
-    private String lastname;
-    private String phone;
-    private String email;
-    private String address;*/
-
     @Getter
     @Embedded
     @Column(name="petowner_id")
@@ -34,13 +28,15 @@ public class PetOwner extends AuditableAbstractAggregateRoot<PetOwner> {
     private AppoinmentStatus status;
 
     public PetOwner() {
+
         this.petOwnerRecordId = new PetOwnerRecordId();
+        this.status=AppoinmentStatus.NOT_STARTED;
     }
 
     public PetOwner(Long profileId, Pet pet){
         this();
         this.profileId = new ProfileId(profileId);
-        this.pet = pet;
+        this.pet = pet != null ? pet : new Pet();
         this.status=AppoinmentStatus.NOT_STARTED;
     }
 
@@ -52,7 +48,7 @@ public class PetOwner extends AuditableAbstractAggregateRoot<PetOwner> {
 
 
     public String getOwnerRecordId() {
-        return this.petOwnerRecordId.petOwnerId();
+        return this.petOwnerRecordId != null ? this.petOwnerRecordId.petOwnerId() : "unknown";
     }
 
     public Long getProfileId() {
@@ -75,7 +71,9 @@ public class PetOwner extends AuditableAbstractAggregateRoot<PetOwner> {
         this.status=AppoinmentStatus.CANCELLED;
     }
 
-    public String getStatus(){return this.status.name().toLowerCase();}
+    public String getStatus() {
+        return this.status != null ? this.status.name(): "NOT_STARTED";
+    }
 
     public boolean isConfirmed(){return this.status.equals(AppoinmentStatus.CONFIRMED);}
 
