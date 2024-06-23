@@ -1,4 +1,4 @@
-/*package pe.upc.petcarebackend.iam.domain.model.aggregates;
+package pe.upc.petcarebackend.iam.domain.model.aggregates;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -8,6 +8,7 @@ import pe.upc.petcarebackend.iam.domain.model.entities.Role;
 import pe.upc.petcarebackend.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -17,28 +18,40 @@ public class User extends AuditableAbstractAggregateRoot<User> {
     @NotBlank
     @Size(max = 50)
     @Column(unique = true)
-    private String email;
+    private String username;
 
     @Getter
     @NotBlank
-    @Size(max = 80)
+    @Size(max = 120)
     private String password;
 
     @Getter
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
-    inverseJoinColumns = @JoinColumn(name = "role_id"))
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
-    public User() {this.roles = new HashSet<>();}
+    public User() { this.roles = new HashSet<>();}
 
-    public User(String email, String password) {
+    public User(String username, String password) {
         this();
-        this.email = email;
+        this.username = username;
         this.password = password;
     }
 
+    public User(String username, String password, List<Role> roles) {
+        this(username, password);
+        addRoles(roles);
+    }
 
+    public User addRole(Role role) {
+        this.roles.add(role);
+        return this;
+    }
 
+    public User addRoles(List<Role> roles) {
+        var validatedRoles = Role.validateRoleSet(roles);
+        this.roles.addAll(validatedRoles);
+        return this;
+    }
 }
-*/
